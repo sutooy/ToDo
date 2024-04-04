@@ -14,7 +14,6 @@ function Display({ list, deleteItem, editItem, completeItem, searchName }) {
                 className=' rounded-md border-0 py-1.5 px-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  '
                 type='text' placeholder='Search'
                 onChange={(e) => handleSearch(e)}
-            //   value={item?.title}
             />
             <div className='flex gap-10 justify-between'>
                 <div className='min-w-40  '>
@@ -22,7 +21,7 @@ function Display({ list, deleteItem, editItem, completeItem, searchName }) {
                         to-do :
                     </p>
                     <div className='flex flex-col gap-4'>
-                        {list.slice().filter(el => !el.complete)?.map((el,) =>
+                        {list.slice().filter(el => !el.complete)?.map((el, index) =>
                             <Card key={el.id} className={"flex flex-col text-left max-w-40 ease-linear delay-150 duration-400 transition "}>
                                 <div className='font-bold text-xl truncate max-h-7'>
                                     {el?.title}
@@ -36,6 +35,7 @@ function Display({ list, deleteItem, editItem, completeItem, searchName }) {
                                         src='assets/delete.svg'
                                         alt='delete'
                                         onClick={() => deleteItem(el.id)}
+                                        data-testid={`delete-${index}`}
                                     />
                                     <div className='flex gap-2'>
                                         <img
@@ -43,12 +43,15 @@ function Display({ list, deleteItem, editItem, completeItem, searchName }) {
                                             src='assets/edit.svg'
                                             alt='edit'
                                             onClick={() => editItem(el.id)}
+                                            data-testid={`edit-${index}`}
                                         />
                                         <img
                                             className='cursor-pointer     '
                                             src='assets/checkList.svg'
-                                            alt='edit'
-                                            onClick={() => completeItem(el.id)} />
+                                            alt='complete'
+                                            onClick={() => completeItem(el.id)}
+                                            data-testid={`complete-${index}`}
+                                        />
                                     </div>
 
                                 </div>
