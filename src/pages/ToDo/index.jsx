@@ -31,7 +31,6 @@ function Index() {
     }
 
     const handleEdit = (id) => {
-        console.log(id)
         setNewItem(toDoList.find(el => el.id === id))
         setEdit(true)
     }
@@ -58,10 +57,14 @@ function Index() {
     return (
         <>
             <div className='mb-7'>
-                <h3 className='font-bold'>
-                    {randomAPI?.sentence}
-                </h3>
-                {randomAPI?.character?.name} - {`(${randomAPI?.character?.house?.name})`}
+                {randomAPI &&
+                    <>
+                        <h3 className='font-bold'>
+                            {randomAPI?.sentence}
+                        </h3>
+                        {randomAPI?.character?.name} - {`(${randomAPI?.character?.house?.name})`}
+                    </>
+                }
             </div>
             <div className='flex gap-20'>
 
@@ -72,7 +75,8 @@ function Index() {
                     item={newItem}
                     newItem={setNewItem}
                     initial={initialState}
-                    addList={(idx) => handleAdd(idx)} />
+                    addList={(idx) => handleAdd(idx)}
+                />
 
                 <Display
                     list={displayList}
@@ -81,6 +85,7 @@ function Index() {
                     editItem={(id) => handleEdit(id)}
                     completeItem={(id) => handleComplete(id)}
                 />
+
             </div>
         </>
     )
