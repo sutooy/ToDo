@@ -29,7 +29,7 @@ function Input({ ...props }) {
             </div>
             <button
                 disabled={disabled}
-                className={` ${disabled ? "bg-slate-500" : " bg-rose-500"} h-20 text-white`} onClick={() => { addList() }} >
+                className={` ${disabled ? "bg-slate-500" : " bg-rose-500"}  text-white`} onClick={() => { addList() }} >
                 {edit ? "Edit" : "Add"}
             </button>
         </Card>
