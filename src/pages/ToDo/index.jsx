@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Display from './components/display'
 import Input from './components/input'
+import { dataApi } from '../../api'
 
 function Index() {
 
@@ -13,7 +14,7 @@ function Index() {
     const [edit, setEdit] = useState(false)
     const [toDoList, setToDoList] = useState([])
     const [search, setSearch] = useState("")
-
+    const [randomAPI, setRandomAPI] = useState()
 
     const handleAdd = () => {
         if (newItem.title.trim() !== "" && newItem.description.trim() !== "") {
@@ -40,31 +41,48 @@ function Index() {
         setToDoList((toDoList.filter((el) => el.id !== id)))
     }
 
-
+    const handleSearch = (e) => {
+        setSearch(e.target.value)
+    }
     let displayList = toDoList.slice().filter(item => item.title.includes(search))
 
+    const fetchAPI = async () => {
+        const DataApi = await dataApi()
+        setRandomAPI(DataApi)
+    }
 
-    console.log("ini list", toDoList)
+    useEffect(() => {
+        fetchAPI()
+    }, [])
 
     return (
-        <div className='flex gap-20'>
-            <Input
-                edit={edit}
-                list={toDoList}
-                setList={setToDoList}
-                item={newItem}
-                newItem={setNewItem}
-                initial={initialState}
-                addList={(idx) => handleAdd(idx)} />
+        <>
+            <div className='mb-7'>
+                <h3 className='font-bold'>
+                    {randomAPI?.sentence}
+                </h3>
+                {randomAPI?.character?.name} - {`(${randomAPI?.character?.house?.name})`}
+            </div>
+            <div className='flex gap-20'>
 
-            <Display
-                list={displayList}
-                searchName={setSearch}
-                deleteItem={(id) => handleDelete(id)}
-                editItem={(id) => handleEdit(id)}
-                completeItem={(id) => handleComplete(id)}
-            />
-        </div>
+                <Input
+                    edit={edit}
+                    list={toDoList}
+                    setList={setToDoList}
+                    item={newItem}
+                    newItem={setNewItem}
+                    initial={initialState}
+                    addList={(idx) => handleAdd(idx)} />
+
+                <Display
+                    list={displayList}
+                    searchName={(e) => handleSearch(e)}
+                    deleteItem={(id) => handleDelete(id)}
+                    editItem={(id) => handleEdit(id)}
+                    completeItem={(id) => handleComplete(id)}
+                />
+            </div>
+        </>
     )
 }
 
