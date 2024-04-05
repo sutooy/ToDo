@@ -3,8 +3,6 @@ import Card from '../../../components/cardContainer'
 
 function Display({ list, deleteItem, editItem, completeItem, searchName }) {
 
-
-
     return (
         <div className='flex flex-col'>
             <h1 className='mb-5'>My Activity</h1>
