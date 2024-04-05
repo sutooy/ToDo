@@ -56,7 +56,7 @@ function Index() {
 
     return (
         <>
-            <div className='mb-7'>
+            <div className='mb-7 max-w-screen-md '>
                 {randomAPI &&
                     <>
                         <h3 className='font-bold'>
@@ -66,8 +66,7 @@ function Index() {
                     </>
                 }
             </div>
-            <div className='flex gap-20'>
-
+            <div className='flex flex-col md:flex-row gap-20'>
                 <Input
                     edit={edit}
                     list={toDoList}
