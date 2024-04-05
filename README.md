@@ -10,7 +10,8 @@ npm test
 
 # Feature :
 
+- Create, Edit, Delete & Complete ToDo list
 - Using animation
 - Using search bar for find specific task/todo
 - Random quote from public API
-- Unit Testing
+- Unit Testing using Jest

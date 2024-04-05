@@ -3,18 +3,16 @@ import Card from '../../../components/cardContainer'
 
 function Display({ list, deleteItem, editItem, completeItem, searchName }) {
 
-    const handleSearch = (e) => {
-        searchName(e.target.value)
-    }
+
 
     return (
         <div className='flex flex-col'>
             <h1 className='mb-5'>My Activity</h1>
             <div className='flex justify-center md:w-full w-80 '>
                 <input
-                    className='  rounded-md border-0 py-1.5 px-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  '
+                    className=' w-full rounded-md border-0 py-1.5 px-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  '
                     type='text' placeholder='Search'
-                    onChange={(e) => handleSearch(e)}
+                    onChange={(e) => searchName(e)}
                 />
             </div>
             <div className='flex gap-10 justify-between'>
